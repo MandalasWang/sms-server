@@ -5,7 +5,6 @@ import com.aliyuncs.http.MethodType;
 import ink.boyuan.smsserver.function.GenerateCommonRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 

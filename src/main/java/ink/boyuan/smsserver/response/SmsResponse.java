@@ -6,6 +6,7 @@ import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
 import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.exceptions.ServerException;
+import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import ink.boyuan.smsserver.config.SmsConfig;
 import ink.boyuan.smsserver.function.GenerateCommonResponse;
@@ -16,6 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.function.Supplier;
 
 /**
@@ -28,6 +31,7 @@ import java.util.function.Supplier;
 public class SmsResponse implements Serializable {
 
 
+    private String dateTimeFormatter = "yyyyMMdd";
     private static Log logger = LogFactory.getLog(SmsResponse.class);
 
     @Autowired
@@ -49,11 +53,40 @@ public class SmsResponse implements Serializable {
             } catch (ClientException e) {
                 e.printStackTrace();
             }
-
         });
 
     }
 
+    /**
+     *  JSONObject jsonObject = JSONObject.parseObject(msg);
+     *             jsonObject.get("Code")=OK;
+     * @return
+     */
+    public String getMsg(String phone) {
+        DefaultProfile profile = generateDefaultProfile();
+        IAcsClient client = new DefaultAcsClient(profile);
+        CommonRequest request = new CommonRequest();
+        request.setMethod(MethodType.POST);
+        request.setDomain("dysmsapi.aliyuncs.com");
+        request.setVersion("2017-05-25");
+        request.setAction("QuerySendDetails");
+        request.putQueryParameter("PhoneNumber", phone);
+        request.putQueryParameter("RegionId", "cn-hangzhou");
+        request.putQueryParameter("SendDate", LocalDateTime.now().format(DateTimeFormatter.ofPattern(dateTimeFormatter)));
+        request.putQueryParameter("PageSize", "1");
+        request.putQueryParameter("CurrentPage", "1");
+        String msg = null;
+        try {
+            CommonResponse response = client.getCommonResponse(request);
+            msg = response.getData();
+            logger.info(msg);
+        } catch (ServerException e) {
+            e.printStackTrace();
+        } catch (ClientException e) {
+            e.printStackTrace();
+        }
+        return msg;
+    }
 
     /**
      * 工厂模式创建 DefaultProfile 实例

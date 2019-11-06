@@ -32,19 +32,21 @@ public class SmsResponse implements Serializable {
 
 
     private String dateTimeFormatter = "yyyyMMdd";
+
     private static Log logger = LogFactory.getLog(SmsResponse.class);
 
     @Autowired
     private SmsConfig smsConfig;
+
     /**
      * 发送手机短信
      * @param phone
      */
-    public void sendSms(String phone){
-        GenerateCommonResponse.getCommonResponse(phone,x->{
+    public void sendSms(String phone,Integer code,String templateCode){
+        GenerateCommonResponse.getCommonResponse(phone,code,templateCode,(x,y,z)->{
             DefaultProfile profile = generateDefaultProfile();
             IAcsClient client = new DefaultAcsClient(profile);
-            CommonRequest request = SmsRequest.generateSmsRequest(phone);
+            CommonRequest request = SmsRequest.generateSmsRequest(x,y,z);
             try {
                 CommonResponse response = client.getCommonResponse(request);
                 logger.info(response.getData());

@@ -2,6 +2,7 @@ package ink.boyuan.smsserver.request;
 
 import com.aliyuncs.CommonRequest;
 import com.aliyuncs.http.MethodType;
+import ink.boyuan.smsserver.constant.ResponseConstant;
 import ink.boyuan.smsserver.function.GenerateCommonRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -17,18 +18,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class SmsRequest {
 
-    /**
-     * 生成随机6位数
-     */
-    private static int CODE = (int)((Math.random()*9+1)*100000);
 
     private static Log logger= LogFactory.getLog(SmsRequest.class);
 
-    private static String TEMPLATE_CODE = "SMS_174987614";
+    public static  CommonRequest generateSmsRequest(String phone,Integer verificationCode,String templateCode){
 
-    public static  CommonRequest generateSmsRequest(String phone){
-
-        return GenerateCommonRequest.generateCommonRequest(TEMPLATE_CODE,CODE,(model, code)->{
+        return GenerateCommonRequest.generateCommonRequest(templateCode,verificationCode,(model, code)->{
             CommonRequest request = new CommonRequest();
             request.setMethod(MethodType.POST);
             request.setDomain("dysmsapi.aliyuncs.com");
@@ -36,7 +31,7 @@ public class SmsRequest {
             request.setAction("SendSms");
             request.putQueryParameter("RegionId", "cn-hangzhou");
             request.putQueryParameter("PhoneNumbers",phone );
-            request.putQueryParameter("SignName", "博渊学客");
+            request.putQueryParameter("SignName", ResponseConstant.SIGN_NAME);
             request.putQueryParameter("TemplateCode", model);
             request.putQueryParameter("TemplateParam", "{\"code\":\""+code+"\"}");
             logger.info(request);

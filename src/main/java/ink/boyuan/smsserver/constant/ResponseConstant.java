@@ -17,4 +17,20 @@ public class ResponseConstant {
     public final static String SMS_SENND_DETAIL_DTOS = "SmsSendDetailDTOs";
 
     public final static String SMS_SEND_DETAIL_DTO = "SmsSendDetailDTO";
+    /**
+     * 登录模板CODE
+     */
+    public final static String LOGIN_TEMPLATE_CODE = "SMS_174987614";
+    /**
+     * 注册模板CODE
+     */
+    public final static String REGISTER_TEMPLATE_CODE = "SMS_174987608";
+    /**
+     * 修改消息模板CODE
+     */
+    public final static String MODIFIED_TEMPLATE_CODE = "SMS_174988974";
+
+
+    public final static String SIGN_NAME = "博渊学客";
+
 }

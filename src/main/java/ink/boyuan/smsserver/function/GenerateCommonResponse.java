@@ -18,9 +18,9 @@ public class GenerateCommonResponse {
     private static Log logger = LogFactory.getLog(GenerateCommonResponse.class);
 
 
-    public static void getCommonResponse(String phone, Consumer<String> consumer){
-        logger.info(consumer);
-        consumer.accept(phone);
+    public static void getCommonResponse(String phone,Integer code,String templateCode, SendSmsFunction<String,Integer,String> sendSmsFunction ){
+        logger.info(sendSmsFunction);
+        sendSmsFunction.sendSmsFun(phone,code,templateCode);
     }
 
 

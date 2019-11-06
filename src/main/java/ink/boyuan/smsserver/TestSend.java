@@ -1,6 +1,9 @@
 package ink.boyuan.smsserver;
 
 import com.alibaba.fastjson.JSONObject;
+import ink.boyuan.smsserver.api.SendSmsFeign;
+import ink.boyuan.smsserver.common.RetResponse;
+import ink.boyuan.smsserver.common.RetResult;
 import ink.boyuan.smsserver.constant.ResponseConstant;
 import ink.boyuan.smsserver.response.SmsResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @description
  **/
 @RestController
-@RequestMapping("/")
-public class TestSend {
+@RequestMapping("/api")
+public class TestSend implements SendSmsFeign {
 
     /**
      * 消息状态码
@@ -27,13 +30,40 @@ public class TestSend {
     @Autowired
     private SmsResponse smsResponse;
 
+    @Override
     @RequestMapping(value = "send",method = RequestMethod.GET)
-    public String sendSms(@RequestParam(value = "phone")String phone){
+    public RetResult sendLoginSms(@RequestParam(value = "phone")String phone){
         JSONObject jsonObject = JSONObject.parseObject(smsResponse.getMsg(phone));
-        smsResponse.sendSms(phone);
+        Integer code = (int)Math.floor((Math.random()*9+1)*100000);
+        smsResponse.sendSms(phone,code,ResponseConstant.LOGIN_TEMPLATE_CODE);
         if(SEND_SUCCESS.equals(jsonObject.get(ResponseConstant.CODE))){
-            return "恭喜你，短信发送成功！";
+            return RetResponse.makeRsp("200","短信发送成功",code);
         }
-        return "短信发送失败！";
+        return RetResponse.makeErrRsp();
     }
+
+    @Override
+    @RequestMapping(value = "sendRegister",method = RequestMethod.GET)
+    public RetResult sendRegisterSms(@RequestParam(value = "phone")String phone){
+        JSONObject jsonObject = JSONObject.parseObject(smsResponse.getMsg(phone));
+        Integer code = (int)Math.floor(Math.random()*1000000);
+        smsResponse.sendSms(phone,code,ResponseConstant.REGISTER_TEMPLATE_CODE);
+        if(SEND_SUCCESS.equals(jsonObject.get(ResponseConstant.CODE))){
+            return RetResponse.makeRsp("200","短信发送成功",code);
+        }
+        return RetResponse.makeErrRsp();
+    }
+
+    @Override
+    @RequestMapping(value = "sendModify",method = RequestMethod.GET)
+    public RetResult sendModifySms(@RequestParam(value = "phone")String phone){
+        JSONObject jsonObject = JSONObject.parseObject(smsResponse.getMsg(phone));
+        Integer code = (int)Math.floor(Math.random()*1000000);
+        smsResponse.sendSms(phone,code,ResponseConstant.MODIFIED_TEMPLATE_CODE);
+        if(SEND_SUCCESS.equals(jsonObject.get(ResponseConstant.CODE))){
+            return RetResponse.makeRsp("200","短信发送成功",code);
+        }
+        return RetResponse.makeErrRsp();
+    }
+
 }

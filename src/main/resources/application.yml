@@ -1,17 +1,17 @@
 
-#Æô¶¯¶Ë¿ÚºÅ
+#å¯åŠ¨ç«¯å£å·
 server:
   port: 8888
   servlet:
     context-path: /sms
 
-#¶©µ¥·şÎñµØÖ·
+#è®¢å•æœåŠ¡åœ°å€
 spring:
   application:
     name: sms-server
 ---
 
-#×¢²áÖĞĞÄµØÖ·
+#æ³¨å†Œä¸­å¿ƒåœ°å€
 eureka:
   client:
     serviceUrl:
@@ -19,10 +19,10 @@ eureka:
 
 
 
-#==========================°¢ÀïÔÆ¶ÌĞÅ·şÎñ=======================
+#==========================é˜¿é‡Œäº‘çŸ­ä¿¡æœåŠ¡=======================
 aliyunSms:
-  AccessKeyID: LTAI4FuYubZkypAjmCvocsyP
-  AccessKeySecret: 5SeE9A47cW19M30ZlLL5T8mPIfWFHX
+  AccessKeyID: 
+  AccessKeySecret: 
 
 
 

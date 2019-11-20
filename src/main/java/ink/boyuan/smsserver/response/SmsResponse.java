@@ -14,6 +14,7 @@ import ink.boyuan.smsserver.request.SmsRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -30,7 +31,9 @@ import java.util.function.Supplier;
 @Component
 public class SmsResponse implements Serializable {
 
-
+    /**
+     * 时间格式
+     */
     private String dateTimeFormatter = "yyyyMMdd";
 
     private static Log logger = LogFactory.getLog(SmsResponse.class);
@@ -42,6 +45,7 @@ public class SmsResponse implements Serializable {
      * 发送手机短信
      * @param phone
      */
+    @Async("asyncPromiseExecutor")
     public void sendSms(String phone,Integer code,String templateCode){
         GenerateCommonResponse.getCommonResponse(phone,code,templateCode,(x,y,z)->{
             DefaultProfile profile = generateDefaultProfile();
@@ -64,6 +68,7 @@ public class SmsResponse implements Serializable {
      *             jsonObject.get("Code")=OK;
      * @return
      */
+    @Async("asyncPromiseExecutor")
     public String getMsg(String phone) {
         DefaultProfile profile = generateDefaultProfile();
         IAcsClient client = new DefaultAcsClient(profile);

@@ -68,7 +68,6 @@ public class SmsResponse implements Serializable {
      *             jsonObject.get("Code")=OK;
      * @return
      */
-    @Async("asyncPromiseExecutor")
     public String getMsg(String phone) {
         DefaultProfile profile = generateDefaultProfile();
         IAcsClient client = new DefaultAcsClient(profile);

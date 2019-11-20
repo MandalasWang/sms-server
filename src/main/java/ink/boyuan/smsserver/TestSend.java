@@ -7,7 +7,6 @@ import ink.boyuan.smsserver.common.RetResult;
 import ink.boyuan.smsserver.constant.ResponseConstant;
 import ink.boyuan.smsserver.response.SmsResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;

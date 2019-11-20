@@ -1,7 +1,7 @@
 #msg
 aliyunSms:
-  AccessKeyID: LTAI4FuYubZkypAjmCvocsyP
-  AccessKeySecret: 5SeE9A47cW19M30ZlLL5T8mPIfWFHX
+  AccessKeyID: 
+  AccessKeySecret: 
 #address
 eureka:
   client:

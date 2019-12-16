@@ -1,7 +1,7 @@
 #msg
 aliyunSms:
-  AccessKeyID: LTAI4FuYubZkypAjmCvocsyP
-  AccessKeySecret: 5SeE9A47cW19M30ZlLL5T8mPIfWFHX
+  AccessKeyID: 
+  AccessKeySecret: 
 #address
 eureka:
   client:
@@ -25,7 +25,7 @@ spring:
         max-active: 8
         max-idle: 5
         max-wait: -1
-    password: 6251935
+    password: xxx
     port: 6379
     timeout: 10000
 

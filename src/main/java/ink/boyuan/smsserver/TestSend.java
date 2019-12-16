@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
+
 /**
  * @author wyy
  * @version 1.0
@@ -37,7 +39,7 @@ public class TestSend implements SendSmsFeign {
 
     @Override
     @RequestMapping(value = "send",method = RequestMethod.GET)
-    public RetResult sendLoginSms(@RequestParam(value = "phone")String phone){
+    public RetResult sendLoginSms(@RequestParam(value = "phone",required = true) String phone){
         JSONObject jsonObject = JSONObject.parseObject(smsResponse.getMsg(phone));
         Integer code = (int)Math.floor((Math.random()*9+1)*100000);
         smsResponse.sendSms(phone,code,ResponseConstant.LOGIN_TEMPLATE_CODE);

@@ -30,10 +30,9 @@ public interface AmqProducer {
     /**
      * 发布订阅
      * @param topic
-     * @param name
      * @return
      */
     @RequestMapping(value = "/amq/product/sendTopic")
-    public String sendTopic(@RequestBody String topic,@RequestParam(value = "name") String name);
+    public String sendTopic(@RequestBody String topic);
 
 }

@@ -1,7 +1,7 @@
 package ink.boyuan.smsserver.config;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
@@ -13,12 +13,13 @@ import org.springframework.stereotype.Component;
  **/
 @Component
 @PropertySource(value="classpath:application.yml")
+@ConfigurationProperties(prefix = "aliyunsms")
 public class SmsConfig {
 
-    @Value("${aliyunSms.AccessKeyID}")
+    @Value("${AccessKeyID}")
     public  String accessKeyID;
 
-    @Value("${aliyunSms.AccessKeySecret}")
+    @Value("${AccessKeySecret}")
     public  String AccessKeySecret;
 
     public String getAccessKeyID() {

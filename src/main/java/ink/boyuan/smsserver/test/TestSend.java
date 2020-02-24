@@ -1,4 +1,4 @@
-package ink.boyuan.smsserver;
+package ink.boyuan.smsserver.test;
 
 import com.alibaba.fastjson.JSONObject;
 import ink.boyuan.smsserver.api.SendSmsFeign;

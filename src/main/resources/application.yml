@@ -1,7 +1,7 @@
 #msg
 aliyunSms:
-  AccessKeyID: 
-  AccessKeySecret: 
+  AccessKeyID:
+  AccessKeySecret:
 #address
 eureka:
   client:
@@ -9,7 +9,7 @@ eureka:
       defaultZone: http://47.97.188.93:8761/eureka/
 #server port
 server:
-  port: 8888
+  port: 9998
   servlet:
     context-path: /sms
 #server name

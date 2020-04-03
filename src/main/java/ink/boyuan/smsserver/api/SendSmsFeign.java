@@ -11,10 +11,10 @@ import javax.validation.groups.Default;
 /**
  * @author 有缘
  * @version 1.0
- * @date 2019/11/6 9:22
+ * @date 2019/11/6 9:22  本类可以直接复制使用
  * @description
  **/
-@Validated(Default.class)
+//@Validated(Default.class)
 public interface SendSmsFeign {
     /**
      * 登录验证短信

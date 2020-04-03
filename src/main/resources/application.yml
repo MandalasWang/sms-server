@@ -1,22 +1,19 @@
-#msg
+
+
 aliyunSms:
-  AccessKeyID: 
-  AccessKeySecret: 
-#address
+  AccessKeyID:
+  AccessKeySecret:
 eureka:
   client:
     serviceUrl:
       defaultZone: http://47.97.188.93:8761/eureka/
-#server port
 server:
   port: 8888
   servlet:
     context-path: /sms
-#server name
 spring:
   application:
     name: sms-server
-#redis
   redis:
     database: 2
     host: 47.97.188.93
@@ -25,8 +22,6 @@ spring:
         max-active: 8
         max-idle: 5
         max-wait: -1
-    password: xxx
+    password: 6251935
     port: 6379
     timeout: 10000
-
-

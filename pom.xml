@@ -63,7 +63,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.28</version>
+            <version>1.2.83</version>
         </dependency>
         <!-- JSONObject对象依赖的jar包 -->
         <dependency>
